@@ -17,7 +17,10 @@ export const runtime = "nodejs";
  * are out of scope for this demo.
  */
 
-const MAX_REQUEST_BYTES = 256 * 1024; // 256 KB cap on the request body
+// 4 MB cap — accommodates the screenshot follow-up flow (data-URL JPEGs typically
+// 200-800 KB after the 1600px / 0.6 quality clamp in capture-context.ts) plus
+// long message histories. Larger values risk wasting Gemini quota on accidents.
+const MAX_REQUEST_BYTES = 4 * 1024 * 1024;
 
 const userContextSchema = z
   .object({
@@ -92,6 +95,10 @@ export async function POST(req: Request) {
     return result.toUIMessageStreamResponse();
   } catch (error) {
     await mcpClient.close();
-    throw error;
+    // Log server-side; do not echo the raw error to the client because upstream
+    // errors from the AI SDK / MCP client may include header values like the
+    // SANITY_API_READ_TOKEN Bearer token.
+    console.error("/api/chat handler error", error);
+    return jsonError(500, "Chat handler error.");
   }
 }

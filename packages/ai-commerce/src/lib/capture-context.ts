@@ -57,13 +57,18 @@ export function capturePageContext() {
   };
 }
 
-/** JPEG screenshot of the body (excluding [data-agent-chat-hidden] elements). Returns a data URL. */
+/**
+ * JPEG screenshot of the body (excluding [data-agent-chat-hidden] elements).
+ * Returns a data URL. Clamped to 1600px on the long axis at quality 0.6 so the
+ * follow-up sendMessage payload fits inside the /api/chat request size cap.
+ */
 export async function captureScreenshot(): Promise<string> {
   const canvas = await html2canvas(document.body, {
     ignoreElements: (el) => el.hasAttribute(AGENT_CHAT_HIDDEN_ATTRIBUTE),
   });
 
-  const MAX_DIMENSION = 4000;
+  const MAX_DIMENSION = 1600;
+  const QUALITY = 0.6;
   let finalCanvas = canvas;
 
   if (canvas.width > MAX_DIMENSION || canvas.height > MAX_DIMENSION) {
@@ -79,5 +84,5 @@ export async function captureScreenshot(): Promise<string> {
     finalCanvas = resizedCanvas;
   }
 
-  return finalCanvas.toDataURL("image/jpeg", 0.7);
+  return finalCanvas.toDataURL("image/jpeg", QUALITY);
 }
