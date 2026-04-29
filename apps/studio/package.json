@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^10.3.0",
-    "@sanity/blueprints": "0.10.0",
+    "@sanity/blueprints": "0.17.1",
     "@types/lodash.get": "^4.4.7",
     "@types/react": "catalog:",
     "@types/styled-components": "^5.1.36",
