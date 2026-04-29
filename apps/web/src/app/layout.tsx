@@ -1,5 +1,6 @@
 import "@workspace/ui/globals.css";
 
+import { ChatWidget } from "@workspace/ai-commerce";
 import { SanityLive } from "@workspace/sanity/live";
 import { GeistMono } from "geist/font/mono";
 import { GeistPixelSquare } from "geist/font/pixel";
@@ -9,9 +10,11 @@ import { VisualEditing } from "next-sanity/visual-editing";
 import { Suspense } from "react";
 import { preconnect, prefetchDNS } from "react-dom";
 
+import { AiCartBridge } from "@/components/ai-cart-bridge";
 import { FooterServer, FooterSkeleton } from "@/components/footer";
 import { CombinedJsonLd } from "@/components/json-ld";
 import { Navbar } from "@/components/navbar";
+import { PageContextTracker } from "@/components/page-context-tracker";
 import { PreviewBar } from "@/components/preview-bar";
 import { PromoBanner } from "@/components/promo-banner";
 import { Providers } from "@/components/providers";
@@ -54,6 +57,10 @@ export default async function RootLayout({
               <VisualEditing />
             </>
           )}
+          {/* AI Commerce */}
+          <PageContextTracker />
+          <AiCartBridge />
+          <ChatWidget />
         </Providers>
       </body>
     </html>
