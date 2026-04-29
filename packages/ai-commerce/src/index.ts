@@ -21,3 +21,7 @@ export {
 
 // Tool registry
 export { clientTools } from "./tools";
+
+// UI
+export { ChatWidget } from "./ui/chat-widget";
+export { Product } from "./ui/product";
