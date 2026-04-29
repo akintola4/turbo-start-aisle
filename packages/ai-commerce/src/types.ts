@@ -41,10 +41,18 @@ export type ClientToolName = (typeof CLIENT_TOOLS)[keyof typeof CLIENT_TOOLS];
  * turbo-start-shopify's collection page searchParams (filter.* keys).
  * The tool's `execute` rebuilds the URL with the filter.* prefix.
  */
+/** Shopify collection handle: lowercase letters/digits/hyphens only. Prevents path-traversal in router.push. */
+const collectionHandleSchema = z
+  .string()
+  .regex(/^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/, {
+    message:
+      "collection must be a Shopify handle (lowercase letters, digits, hyphens)",
+  });
+
 export const productFiltersSchema = z.object({
-  collection: z
-    .string()
-    .describe("Shopify collection handle to navigate to (required)"),
+  collection: collectionHandleSchema.describe(
+    "Shopify collection handle to navigate to (required)",
+  ),
   available: z
     .boolean()
     .optional()
