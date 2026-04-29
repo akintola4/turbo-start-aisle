@@ -1,2 +1,13 @@
-// Public exports populated incrementally as components and tools are added.
-export {};
+// Types
+export type {
+  ClientToolName,
+  NavigateDirective,
+  PageContext,
+  PageSurface,
+  ProductFiltersInput,
+  UserContext,
+} from "./types";
+export { CLIENT_TOOLS, productFiltersSchema } from "./types";
+
+// Page-context hooks
+export { usePageContext, useSetPageContext } from "./context/page-context";
