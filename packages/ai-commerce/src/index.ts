@@ -11,3 +11,13 @@ export { CLIENT_TOOLS, productFiltersSchema } from "./types";
 
 // Page-context hooks
 export { usePageContext, useSetPageContext } from "./context/page-context";
+
+// System prompt + MCP wrapper
+export { buildSystemPrompt } from "./system-prompt";
+export {
+  createSanityAgentContextClient,
+  type SanityAgentContextConfig,
+} from "./mcp/sanity-agent-context";
+
+// Tool registry
+export { clientTools } from "./tools";
