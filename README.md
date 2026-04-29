@@ -1,6 +1,8 @@
-# cohnsm
+# Turbo Start Aisle
 
-Demo combining the AI shopping assistant from `context-agent-sanity-test` with the production `turbo-start-shopify` headless commerce monorepo. Personal/demo project — not for production.
+> **Aisle** — a starter for headless Shopify with an AI shopping assistant baked in. Built on top of `turbo-start-shopify`, with a floating chat widget, page-context capture, AI-controlled filters, and inline product cards powered by Vercel AI SDK + Gemini 2.5 Flash + Sanity Agent Context MCP.
+
+The "AI" lives inside the word — and inside the chat bubble.
 
 ## What's added on top of turbo-start-shopify
 

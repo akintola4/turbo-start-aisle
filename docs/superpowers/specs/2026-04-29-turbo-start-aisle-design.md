@@ -1,4 +1,6 @@
-# cohnsm — Design Spec
+# Turbo Start Aisle — Design Spec
+
+(Originally drafted under the working name `cohnsm`; renamed to `turbo-start-aisle` after design freeze.)
 
 **Date:** 2026-04-29
 **Status:** approved during brainstorming, awaiting user spec review before plan

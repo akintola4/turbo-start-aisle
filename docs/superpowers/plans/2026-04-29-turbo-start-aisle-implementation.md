@@ -1,4 +1,6 @@
-# cohnsm Implementation Plan
+# Turbo Start Aisle — Implementation Plan
+
+(Originally drafted under the working name `cohnsm`; renamed to `turbo-start-aisle` after design freeze.)
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -8,7 +10,7 @@
 
 **Tech Stack:** pnpm 10.28 + Turborepo, Next.js 16 (App Router, Turbopack, React Compiler), TypeScript strict, Sanity v5 + next-sanity 12, Shopify Storefront API, Tailwind CSS v4 + Shadcn (new-york style), Vercel AI SDK v6 (`ai`, `@ai-sdk/google`, `@ai-sdk/react`, `@ai-sdk/mcp`), `@sanity/agent-directives` for inline product cards, `react-markdown` 10, `turndown` 7, `html2canvas-pro` 1.6, T3 env (Zod v4), Biome.
 
-**Spec:** [`docs/superpowers/specs/2026-04-29-cohnsm-design.md`](../specs/2026-04-29-cohnsm-design.md)
+**Spec:** [`docs/superpowers/specs/2026-04-29-turbo-start-aisle-design.md`](../specs/2026-04-29-turbo-start-aisle-design.md)
 
 **Reference clones (read-only, used for porting):**
 - `/Users/foster/Documents/Saas/cohnsm/turbo-start-shopify/` — to be moved into `.research/` after foundation copy
