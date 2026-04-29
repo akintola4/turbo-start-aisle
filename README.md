@@ -1,6 +1,6 @@
 # Turbo Start Aisle
 
-![Turbo Start Aisle](apps/web/public/og.jpg)
+![Turbo Start Aisle](og.jpg)
 
 > **Aisle** — a starter for headless Shopify with an AI shopping assistant baked in. Built on top of `turbo-start-shopify`, with a floating chat widget, page-context capture, AI-controlled filters, and inline product cards powered by Vercel AI SDK + Gemini 2.5 Flash + Sanity Agent Context MCP.
 
