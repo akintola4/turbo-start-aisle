@@ -1,4 +1,4 @@
-# Contributing to Turbo Start Shopify
+# Contributing to Turbo Start Aisle
 
 Thanks for your interest in contributing! This guide covers everything you need to get started.
 
@@ -93,11 +93,11 @@ packages/
 
 ## Adding New Features
 
-For common extension patterns (page builder blocks, Sanity schemas, Shadcn components), see the [Customization](README.md#customization) section in the README.
+For common extension patterns (page builder blocks, Sanity schemas, Shadcn components), refer to the upstream [`turbo-start-shopify`](https://github.com/robotostudio/turbo-start-shopify) documentation. AI-assistant additions live in `packages/ai-commerce/`.
 
 ## Reporting Bugs
 
-Open a [GitHub issue](https://github.com/robotostudio/turbo-start-shopify/issues) with:
+Open a GitHub issue on this repository with:
 
 - A clear title describing the problem
 - Steps to reproduce
