@@ -13,6 +13,8 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@ai-sdk/google": "^3.0.37",
+    "@ai-sdk/react": "^3.0.0",
     "@sanity/asset-utils": "^2.3.0",
     "@sanity/client": "catalog:",
     "@sanity/image-url": "^2.0.3",
@@ -24,6 +26,7 @@
     "@workspace/logger": "workspace:*",
     "@workspace/sanity": "workspace:*",
     "@workspace/ui": "workspace:*",
+    "ai": "^6.0.0",
     "babel-plugin-react-compiler": "19.1.0-rc.2",
     "embla-carousel-react": "^8.6.0",
     "fuse.js": "^7.1.0",
