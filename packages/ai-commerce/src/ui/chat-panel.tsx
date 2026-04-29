@@ -74,7 +74,7 @@ export function ChatPanel({ onClose }: ChatPanelProps) {
   const router = useRouter();
   const pendingScreenshotRef = useRef<string | null>(null);
 
-  const { messages, sendMessage, status, addToolResult } = useChat({
+  const { messages, sendMessage, status, addToolOutput } = useChat({
     transport: new DefaultChatTransport({
       api: "/api/chat",
       body: () => ({ userContext: captureUserContext() }),
@@ -88,13 +88,13 @@ export function ChatPanel({ onClose }: ChatPanelProps) {
         case CLIENT_TOOLS.PAGE_CONTEXT: {
           try {
             const ctx = capturePageContext();
-            addToolResult({
+            addToolOutput({
               tool: CLIENT_TOOLS.PAGE_CONTEXT,
               toolCallId: toolCall.toolCallId,
               output: JSON.stringify(ctx),
             });
           } catch (err) {
-            addToolResult({
+            addToolOutput({
               tool: CLIENT_TOOLS.PAGE_CONTEXT,
               toolCallId: toolCall.toolCallId,
               output: `Failed to capture page context: ${
@@ -109,13 +109,13 @@ export function ChatPanel({ onClose }: ChatPanelProps) {
           try {
             const file = await captureScreenshot();
             pendingScreenshotRef.current = file;
-            addToolResult({
+            addToolOutput({
               tool: CLIENT_TOOLS.SCREENSHOT,
               toolCallId: toolCall.toolCallId,
               output: "Screenshot captured (sent as follow-up message).",
             });
           } catch (err) {
-            addToolResult({
+            addToolOutput({
               tool: CLIENT_TOOLS.SCREENSHOT,
               toolCallId: toolCall.toolCallId,
               output: `Failed to capture screenshot: ${
@@ -129,7 +129,7 @@ export function ChatPanel({ onClose }: ChatPanelProps) {
         case CLIENT_TOOLS.SET_FILTERS: {
           const result = productFiltersSchema.safeParse(toolCall.input);
           if (!result.success) {
-            addToolResult({
+            addToolOutput({
               tool: CLIENT_TOOLS.SET_FILTERS,
               toolCallId: toolCall.toolCallId,
               output: `Invalid filter input: ${result.error.message}`,
@@ -138,7 +138,7 @@ export function ChatPanel({ onClose }: ChatPanelProps) {
           }
           const { href, applied } = buildCollectionUrl(result.data);
           router.push(href, { scroll: false });
-          addToolResult({
+          addToolOutput({
             tool: CLIENT_TOOLS.SET_FILTERS,
             toolCallId: toolCall.toolCallId,
             output: `Applied filters (${

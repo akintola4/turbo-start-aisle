@@ -44,9 +44,11 @@ export function capturePageContext() {
 
   const main = document.querySelector("main") || document.body;
   const clone = main.cloneNode(true) as Element;
-  clone
-    .querySelectorAll(`[${AGENT_CHAT_HIDDEN_ATTRIBUTE}]`)
-    .forEach((el) => el.remove());
+  for (const el of clone.querySelectorAll(
+    `[${AGENT_CHAT_HIDDEN_ATTRIBUTE}]`,
+  )) {
+    el.remove();
+  }
 
   return {
     url: window.location.href,

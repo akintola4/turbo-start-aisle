@@ -15,7 +15,7 @@ export function MessageList({ messages, isStreaming }: MessageListProps) {
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, [messages.length, isStreaming]);
+  }, [messages, isStreaming]);
 
   return (
     <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-3">

@@ -25,7 +25,6 @@ function Document({ id, type, isInline }: DocumentDirectiveProps) {
 }
 
 type ExtendedComponents = Components & {
-  // biome-ignore lint/style/useNamingConvention: directive component name is fixed by remark plugin
   Document: typeof Document;
 };
 
@@ -33,7 +32,6 @@ export function TextPart({ text, isUser }: TextPartProps) {
   if (!text.trim()) return null;
 
   const components: ExtendedComponents = {
-    // biome-ignore lint/style/useNamingConvention: directive name
     Document,
     p: ({ children }) => <p className="whitespace-pre-wrap">{children}</p>,
     ul: ({ children }) => <ul className="list-disc pl-4">{children}</ul>,
