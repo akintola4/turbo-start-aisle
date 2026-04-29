@@ -51,7 +51,7 @@
     "styled-components": "^6.3.8"
   },
   "devDependencies": {
-    "@faker-js/faker": "^10.3.0",
+    "@faker-js/faker": "^10.4.0",
     "@sanity/blueprints": "0.10.0",
     "@types/lodash.get": "^4.4.7",
     "@types/react": "catalog:",
