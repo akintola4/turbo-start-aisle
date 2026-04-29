@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Read the spec
+    url: https://github.com/akintola4/turbo-start-aisle/blob/main/README.md
+    about: Setup, architecture overview, and what's added on top of turbo-start-shopify.
+  - name: Upstream commerce stack (turbo-start-shopify)
+    url: https://github.com/robotostudio/turbo-start-shopify
+    about: For questions about the underlying Sanity / Shopify / page builder behavior.
+  - name: Security issue?
+    url: https://github.com/akintola4/turbo-start-aisle/security/policy
+    about: Please report privately via the Security tab — do not open a public issue.

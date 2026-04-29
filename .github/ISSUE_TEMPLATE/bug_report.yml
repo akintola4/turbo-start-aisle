@@ -1,0 +1,112 @@
+name: Bug report
+description: Report a bug in Turbo Start Aisle
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report. The more specific you can be, the faster this gets fixed.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A clear description of the bug. What were you doing, and what went wrong?
+      placeholder: When I open the chat widget on a collection page and ask for blue items under $50, the page doesn't filter…
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Numbered list of exact steps to reproduce. Include URL paths, chat prompts you typed, etc.
+      placeholder: |
+        1. Run `pnpm dev`
+        2. Visit `http://localhost:3000/collections/apparel`
+        3. Open the chat widget
+        4. Type "show me blue items under $50"
+        5. The URL doesn't change and the page still shows everything
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      description: Where in the codebase does this bug live?
+      options:
+        - "apps/web (Next.js storefront)"
+        - "apps/studio (Sanity Studio)"
+        - "packages/ai-commerce (chat widget, tools, MCP wrapper)"
+        - "Chat / AI assistant behavior"
+        - "Cart / checkout"
+        - "Build / tooling / monorepo"
+        - "Documentation"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node version
+      description: Output of `node --version`
+      placeholder: "v22.11.0"
+    validations:
+      required: true
+
+  - type: input
+    id: pnpm-version
+    attributes:
+      label: pnpm version
+      description: Output of `pnpm --version`
+      placeholder: "10.28.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - macOS
+        - Linux
+        - Windows (WSL)
+        - Windows (native)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser (if relevant)
+      placeholder: "Chrome 130, Safari 18, Firefox 132…"
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Browser console errors, terminal output, or screenshots. Paste inline or attach files.
+      render: shell
+
+  - type: checkboxes
+    id: env-checked
+    attributes:
+      label: Environment configured correctly?
+      description: Confirm before submitting.
+      options:
+        - label: I have a complete `apps/web/.env.local` (Sanity + Shopify required envs filled in)
+          required: true
+        - label: I have run `pnpm install` after pulling the latest main
+          required: true

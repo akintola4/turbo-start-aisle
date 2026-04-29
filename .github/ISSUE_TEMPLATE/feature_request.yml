@@ -1,0 +1,55 @@
+name: Feature request
+description: Suggest an idea or improvement for Turbo Start Aisle
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion! Concrete proposals are more useful than abstract ones — please describe a real situation where you needed this.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: What's annoying, missing, or hard about Turbo Start Aisle today?
+      placeholder: When the AI suggests a multi-variant product, the inline card just links to the PDP. I want to pick a size from inside the chat.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: How do you think this should work? Be as specific as you can — UI sketches welcome.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches you thought about and why they don't fit.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - "Chat / AI assistant behavior"
+        - "AI tool surface (page_context / screenshot / set_collection_filters)"
+        - "Inline product cards"
+        - "System prompt / GROQ guidance"
+        - "Storefront UI (apps/web)"
+        - "Sanity Studio (apps/studio)"
+        - "Tooling / build / monorepo"
+        - "Documentation"
+        - "Other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Links, screenshots, related issues, or anything else useful.
