@@ -106,6 +106,32 @@ You're on the free tier (5 requests/minute). Wait 60 seconds, or enable billing 
 
 ---
 
+## Acknowledgments
+
+Turbo Start Aisle stands on the shoulders of two excellent projects. **Big thanks to the people who built them.**
+
+### 🙏 Sanity
+
+The entire AI-commerce experience hinges on tooling Sanity has been quietly shipping over the past year:
+
+- **[Sanity Studio v5](https://www.sanity.io/)** — the editing surface, schema layer, and visual editing primitives that make headless feel ergonomic.
+- **[Sanity Connect for Shopify](https://apps.shopify.com/sanity-connect)** — the bridge that mirrors Shopify's product catalog into Sanity so it can be enriched, queried, and exposed to AI agents.
+- **[Agent Actions](https://www.sanity.io/docs/agent-actions) and the Agent Context MCP** — a schema-aware MCP endpoint that gives any AI client structured, read-only access to a dataset. The chat assistant in this project would not exist without it.
+- **[`@sanity/agent-context`](https://www.npmjs.com/package/@sanity/agent-context) and [`@sanity/agent-directives`](https://www.npmjs.com/package/@sanity/agent-directives)** — the Studio plugin and directive parser that let authors define what the AI sees and let assistants reference Sanity documents inline.
+
+The Sanity team's bet that *content + AI* deserves first-class primitives — not just a chat box bolted onto a CMS — is exactly what makes building something like Aisle possible without a custom backend.
+
+### 🙏 Roboto Studio (`turbo-start-shopify`)
+
+The entire commerce foundation of this project is [`robotostudio/turbo-start-shopify`](https://github.com/robotostudio/turbo-start-shopify), an opinionated, production-ready Shopify + Sanity + Next.js monorepo. We didn't reinvent any of it:
+
+- The Turborepo + pnpm workspace layout, biome config, env validation, type generation, and Tailwind v4 + Shadcn setup.
+- The Sanity schemas for `product`, `productVariant`, `collection`, page builder, blog, navigation, footer, SEO, redirects.
+- The Shopify Storefront API client, cart server actions, cart UI, collection filtering, and checkout handoff.
+- The deployment story (Vercel + Sanity-hosted Studio).
+
+Aisle simply layered an AI assistant on top. **Huge thanks to the Roboto Studio team** for releasing such a complete, well-documented starter — and for keeping it MIT-licensed so projects like this one can build on it.
+
 ## Foundation
 
 Turbo Start Aisle is built on top of [`robotostudio/turbo-start-shopify`](https://github.com/robotostudio/turbo-start-shopify) — see that repository for the underlying commerce stack documentation (page builder, blog, navigation, SEO, Shopify cart, Sanity Studio, deployment, etc.). The Aisle additions are limited to `packages/ai-commerce/` and the chat-related files in `apps/web/`.
