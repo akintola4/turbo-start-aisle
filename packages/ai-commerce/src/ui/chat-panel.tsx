@@ -16,6 +16,7 @@ import {
   type ProductFiltersInput,
   productFiltersSchema,
 } from "../types";
+import { EmptyState } from "./empty-state";
 import { MessageInput } from "./message-input";
 import { MessageList } from "./message-list";
 
@@ -199,7 +200,11 @@ export function ChatPanel({ onClose }: ChatPanelProps) {
           <XIcon className="h-4 w-4" />
         </button>
       </header>
-      <MessageList messages={messages} isStreaming={isStreaming} />
+      {messages.length === 0 ? (
+        <EmptyState onSuggestion={handleSend} />
+      ) : (
+        <MessageList messages={messages} isStreaming={isStreaming} />
+      )}
       <MessageInput onSend={handleSend} disabled={isStreaming} />
     </div>
   );
