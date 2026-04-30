@@ -110,7 +110,7 @@ You're on the free tier (5 requests/minute). Wait 60 seconds, or enable billing 
 
 Turbo Start Aisle stands on the shoulders of two excellent projects. **Big thanks to the people who built them.**
 
-### 🙏 Sanity
+### Sanity
 
 The entire AI-commerce experience hinges on tooling Sanity has been quietly shipping over the past year:
 
@@ -121,7 +121,7 @@ The entire AI-commerce experience hinges on tooling Sanity has been quietly ship
 
 The Sanity team's bet that *content + AI* deserves first-class primitives — not just a chat box bolted onto a CMS — is exactly what makes building something like Aisle possible without a custom backend.
 
-### 🙏 Roboto Studio (`turbo-start-shopify`)
+### Roboto Studio (`turbo-start-shopify`)
 
 The entire commerce foundation of this project is [`robotostudio/turbo-start-shopify`](https://github.com/robotostudio/turbo-start-shopify), an opinionated, production-ready Shopify + Sanity + Next.js monorepo. We didn't reinvent any of it:
 
