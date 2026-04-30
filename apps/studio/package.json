@@ -7,8 +7,11 @@
   "scripts": {
     "dev": "sanity dev",
     "start": "sanity start",
+    "clean": "rm -rf dist schema.json",
     "build": "sanity build",
     "deploy": "sanity deploy",
+    "predeploy": "pnpm run clean",
+    "schema:deploy": "pnpm run clean && sanity schema extract --enforce-required-fields && sanity schema deploy",
     "lint": "biome lint .",
     "format": "biome format --write .",
     "format:check": "biome format .",

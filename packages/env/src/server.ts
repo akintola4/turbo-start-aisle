@@ -14,7 +14,7 @@ const env = createEnv({
     SANITY_API_WRITE_TOKEN: z.string().min(1),
     SHOPIFY_STORE_DOMAIN: z.string().min(1),
     SHOPIFY_STOREFRONT_ACCESS_TOKEN: z.string().min(1),
-    SHOPIFY_API_VERSION: z.string().default("2025-01"),
+    SHOPIFY_API_VERSION: z.string().default("2026-04"),
     GOOGLE_GENERATIVE_AI_API_KEY: z.string().default(""),
     SANITY_CONTEXT_MCP_URL: z.string().default(""),
   },
