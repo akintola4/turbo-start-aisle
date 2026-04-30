@@ -87,7 +87,9 @@ export async function POST(req: Request) {
       system: buildSystemPrompt({ userContext: userContext ?? null }),
       messages: await convertToModelMessages(messages as never),
       tools: { ...mcpTools, ...clientTools },
-      stopWhen: stepCountIs(20),
+      // 5 step max — keeps free-tier Gemini happy. Bump back up to ~20 once
+      // billing is enabled (Tier 1: 1000 RPM on gemini-2.5-flash).
+      stopWhen: stepCountIs(5),
       onFinish: async () => {
         await mcpClient.close();
       },

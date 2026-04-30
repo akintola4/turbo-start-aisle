@@ -1,9 +1,55 @@
 "use client";
 
 import { MessageCircleIcon, XIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 
 import { ChatPanel } from "./chat-panel";
+
+const panelStyle: CSSProperties = {
+  position: "fixed",
+  bottom: "5.5rem",
+  right: "1rem",
+  zIndex: 50,
+  height: "500px",
+  width: "380px",
+};
+
+const buttonStyle: CSSProperties = {
+  position: "fixed",
+  bottom: "1rem",
+  right: "1rem",
+  zIndex: 50,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "3.5rem",
+  height: "3.5rem",
+  borderRadius: "9999px",
+  backgroundColor: "#0B0F19",
+  color: "#B8FF3C",
+  boxShadow: "0 10px 25px rgba(0,0,0,0.25)",
+  border: "none",
+  cursor: "pointer",
+  transition: "transform 200ms ease-out, box-shadow 200ms ease-out",
+};
+
+const iconWrapStyle: CSSProperties = {
+  position: "relative",
+  width: "1.5rem",
+  height: "1.5rem",
+};
+
+function iconStyle(visible: boolean): CSSProperties {
+  return {
+    position: "absolute",
+    inset: 0,
+    width: "1.5rem",
+    height: "1.5rem",
+    transition: "transform 300ms, opacity 300ms",
+    transform: visible ? "rotate(0) scale(1)" : "rotate(90deg) scale(0)",
+    opacity: visible ? 1 : 0,
+  };
+}
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,10 +57,7 @@ export function ChatWidget() {
   return (
     <>
       {isOpen ? (
-        <div
-          data-agent-chat-hidden
-          className="fixed bottom-22 right-4 z-50 h-[500px] w-[380px]"
-        >
+        <div data-agent-chat-hidden style={panelStyle}>
           <ChatPanel onClose={() => setIsOpen(false)} />
         </div>
       ) : null}
@@ -24,24 +67,12 @@ export function ChatWidget() {
         data-agent-chat-hidden
         onClick={() => setIsOpen((v) => !v)}
         aria-label={isOpen ? "Close chat" : "Open chat"}
-        className="fixed bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl active:scale-95"
+        style={buttonStyle}
       >
-        <div className="relative h-6 w-6">
-          <MessageCircleIcon
-            className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
-              isOpen
-                ? "rotate-90 scale-0 opacity-0"
-                : "rotate-0 scale-100 opacity-100"
-            }`}
-          />
-          <XIcon
-            className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
-              isOpen
-                ? "rotate-0 scale-100 opacity-100"
-                : "-rotate-90 scale-0 opacity-0"
-            }`}
-          />
-        </div>
+        <span style={iconWrapStyle}>
+          <MessageCircleIcon style={iconStyle(!isOpen)} />
+          <XIcon style={iconStyle(isOpen)} />
+        </span>
       </button>
     </>
   );

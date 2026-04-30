@@ -137,6 +137,43 @@ export type ImageLinkCards = {
   }>;
 };
 
+export type Hero = {
+  _type: "hero";
+  badge?: string;
+  title?: string;
+  richText?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h2" | "h3" | "h4" | "h5" | "h6";
+    listItem?: "number" | "bullet";
+    markDefs?: Array<{
+      customLink?: CustomUrl;
+      _type: "customLink";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  buttons?: Array<
+    {
+      _key: string;
+    } & Button
+  >;
+};
+
 export type FaqReference = {
   _ref: string;
   _type: "reference";
@@ -280,6 +317,9 @@ export type PageBuilder = Array<
   | ({
       _key: string;
     } & FaqAccordion)
+  | ({
+      _key: string;
+    } & Hero)
   | ({
       _key: string;
     } & ImageLinkCards)
@@ -680,28 +720,6 @@ export type ImageCallToAction = {
     | ({
         _key: string;
       } & LinkExternal)
-  >;
-};
-
-export type Hero = {
-  _type: "hero";
-  title?: string;
-  description?: string;
-  link?: Array<
-    | ({
-        _key: string;
-      } & LinkInternal)
-    | ({
-        _key: string;
-      } & LinkExternal)
-  >;
-  content?: Array<
-    | ({
-        _key: string;
-      } & ProductWithVariant)
-    | ({
-        _key: string;
-      } & ImageWithProductHotspots)
   >;
 };
 
@@ -1637,6 +1655,7 @@ export type AllSanitySchemaTypes =
   | ImageLinkCardImage
   | SubscribeNewsletter
   | ImageLinkCards
+  | Hero
   | FaqReference
   | FaqAccordion
   | FeatureCardsIcon
@@ -1682,7 +1701,6 @@ export type AllSanitySchemaTypes =
   | ImageFeature
   | Images
   | ImageCallToAction
-  | Hero
   | Grid
   | GridItem
   | FooterSettings
@@ -1986,6 +2004,62 @@ export type QueryHomePageDataResult = {
           }> | null;
           _type: "featureCardIcon";
           _key: string;
+        }> | null;
+      }
+    | {
+        _key: string;
+        _type: "hero";
+        badge?: string;
+        title?: string;
+        richText: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+          listItem?: "bullet" | "number";
+          markDefs: Array<
+            | {
+                customLink?: CustomUrl;
+                _type: "customLink";
+                _key: string;
+                openInNewTab: boolean | null;
+                href: string | "#" | null;
+              }
+            | {
+                customLink?: CustomUrl;
+                _type: "customLink";
+                _key: string;
+              }
+          > | null;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }> | null;
+        image: {
+          id: string | null;
+          preview: string | null;
+          alt: string | "untitled";
+          hotspot: {
+            x: number;
+            y: number;
+          } | null;
+          crop: {
+            bottom: number;
+            left: number;
+            right: number;
+            top: number;
+          } | null;
+        } | null;
+        buttons: Array<{
+          text: string | null;
+          variant: "default" | "link" | "outline" | "secondary" | null;
+          _key: string;
+          _type: "button";
+          openInNewTab: boolean | null;
+          href: string | null;
         }> | null;
       }
     | {
@@ -2360,6 +2434,62 @@ export type QuerySlugPageDataResult = {
       }
     | {
         _key: string;
+        _type: "hero";
+        badge?: string;
+        title?: string;
+        richText: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+          listItem?: "bullet" | "number";
+          markDefs: Array<
+            | {
+                customLink?: CustomUrl;
+                _type: "customLink";
+                _key: string;
+                openInNewTab: boolean | null;
+                href: string | "#" | null;
+              }
+            | {
+                customLink?: CustomUrl;
+                _type: "customLink";
+                _key: string;
+              }
+          > | null;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }> | null;
+        image: {
+          id: string | null;
+          preview: string | null;
+          alt: string | "untitled";
+          hotspot: {
+            x: number;
+            y: number;
+          } | null;
+          crop: {
+            bottom: number;
+            left: number;
+            right: number;
+            top: number;
+          } | null;
+        } | null;
+        buttons: Array<{
+          text: string | null;
+          variant: "default" | "link" | "outline" | "secondary" | null;
+          _key: string;
+          _type: "button";
+          openInNewTab: boolean | null;
+          href: string | null;
+        }> | null;
+      }
+    | {
+        _key: string;
         _type: "imageLinkCards";
         eyebrow?: string;
         title: string;
@@ -2726,6 +2856,62 @@ export type QueryBlogIndexPageDataResult = {
           }> | null;
           _type: "featureCardIcon";
           _key: string;
+        }> | null;
+      }
+    | {
+        _key: string;
+        _type: "hero";
+        badge?: string;
+        title?: string;
+        richText: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+          listItem?: "bullet" | "number";
+          markDefs: Array<
+            | {
+                customLink?: CustomUrl;
+                _type: "customLink";
+                _key: string;
+                openInNewTab: boolean | null;
+                href: string | "#" | null;
+              }
+            | {
+                customLink?: CustomUrl;
+                _type: "customLink";
+                _key: string;
+              }
+          > | null;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }> | null;
+        image: {
+          id: string | null;
+          preview: string | null;
+          alt: string | "untitled";
+          hotspot: {
+            x: number;
+            y: number;
+          } | null;
+          crop: {
+            bottom: number;
+            left: number;
+            right: number;
+            top: number;
+          } | null;
+        } | null;
+        buttons: Array<{
+          text: string | null;
+          variant: "default" | "link" | "outline" | "secondary" | null;
+          _key: string;
+          _type: "button";
+          openInNewTab: boolean | null;
+          href: string | null;
         }> | null;
       }
     | {
@@ -3681,27 +3867,58 @@ export type QueryCollectionByHandleResult = {
   showHero: boolean | null;
   hero: {
     _type: "hero";
+    badge?: string;
     title?: string;
-    description?: string;
-    link?: Array<
-      | ({
-          _key: string;
-        } & LinkExternal)
-      | ({
-          _key: string;
-        } & LinkInternal)
-    >;
-    content?: Array<
-      | ({
-          _key: string;
-        } & ImageWithProductHotspots)
-      | ({
-          _key: string;
-        } & ProductWithVariant)
-    >;
-    image: null;
-    buttons: null;
-    richText: null;
+    richText: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs: Array<
+        | {
+            customLink?: CustomUrl;
+            _type: "customLink";
+            _key: string;
+            openInNewTab: boolean | null;
+            href: string | "#" | null;
+          }
+        | {
+            customLink?: CustomUrl;
+            _type: "customLink";
+            _key: string;
+          }
+      > | null;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
+    image: {
+      id: string | null;
+      preview: string | null;
+      alt: string | "untitled";
+      hotspot: {
+        x: number;
+        y: number;
+      } | null;
+      crop: {
+        bottom: number;
+        left: number;
+        right: number;
+        top: number;
+      } | null;
+    } | null;
+    buttons: Array<{
+      text: string | null;
+      variant: "default" | "link" | "outline" | "secondary" | null;
+      _key: string;
+      _type: "button";
+      openInNewTab: boolean | null;
+      href: string | null;
+    }> | null;
   } | null;
   modules: Array<
     | {

@@ -1,6 +1,7 @@
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
 import {
   BookMarked,
+  Bot,
   CogIcon,
   FileText,
   HomeIcon,
@@ -105,6 +106,10 @@ export const structure = (
               list(S, "colorTheme", "Color Themes", Settings2),
             ])
         ),
+      S.divider(),
+
+      // AI
+      list(S, "sanity.agentContext", "Agent Context", Bot),
       S.divider(),
 
       // Configuration
