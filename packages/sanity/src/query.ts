@@ -732,3 +732,11 @@ export const queryAllCollections = defineQuery(`
     seo
   }
 `);
+
+export const queryAiAssistantSettings = defineQuery(`
+  *[_type == "aiAssistantSettings" && _id == "aiAssistantSettings"][0]{
+    welcomeHeading,
+    welcomeSubtitle,
+    suggestions
+  }
+`);

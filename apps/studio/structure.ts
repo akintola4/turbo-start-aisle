@@ -109,7 +109,22 @@ export const structure = (
       S.divider(),
 
       // AI
-      list(S, "sanity.agentContext", "Agent Context", Bot),
+      S.listItem()
+        .title("AI Assistant")
+        .icon(Bot)
+        .child(
+          S.list()
+            .title("AI Assistant")
+            .items([
+              singleton(
+                S,
+                "aiAssistantSettings",
+                "Welcome & Suggestions",
+                Bot,
+              ),
+              list(S, "sanity.agentContext", "Agent Context", Bot),
+            ])
+        ),
       S.divider(),
 
       // Configuration

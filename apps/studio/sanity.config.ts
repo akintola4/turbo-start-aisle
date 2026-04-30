@@ -67,6 +67,7 @@ export default defineConfig({
               "footer",
               "settings",
               "blogIndex",
+              "aiAssistantSettings",
               "assist.instruction.context",
               "media.tag",
             ].includes(template?.templateId)
