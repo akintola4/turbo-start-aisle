@@ -1,27 +1,16 @@
 "use client";
 
+import { Textarea } from "@workspace/ui/components/textarea";
 import { SendIcon } from "lucide-react";
-import { type KeyboardEvent, useLayoutEffect, useRef, useState } from "react";
+import { type KeyboardEvent, useState } from "react";
 
 interface MessageInputProps {
   onSend: (text: string) => void;
   disabled?: boolean;
 }
 
-const MAX_HEIGHT_PX = 160;
-
 export function MessageInput({ onSend, disabled }: MessageInputProps) {
   const [value, setValue] = useState("");
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-
-  // Auto-resize: reset to single-line, then grow to scrollHeight up to a cap.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: value is the resize trigger; biome can't see DOM-side reads.
-  useLayoutEffect(() => {
-    const el = textareaRef.current;
-    if (!el) return;
-    el.style.height = "auto";
-    el.style.height = `${Math.min(el.scrollHeight, MAX_HEIGHT_PX)}px`;
-  }, [value]);
 
   const handleSend = () => {
     const trimmed = value.trim();
@@ -46,15 +35,14 @@ export function MessageInput({ onSend, disabled }: MessageInputProps) {
         handleSend();
       }}
     >
-      <textarea
-        ref={textareaRef}
+      <Textarea
         rows={1}
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="Ask about products…"
         disabled={disabled}
-        className="flex-1 resize-none overflow-y-auto rounded-md border border-border bg-background px-2 py-1 text-sm outline-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden focus:ring-2 focus:ring-ring disabled:opacity-50"
+        className="max-h-40 min-h-9 resize-none text-sm [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       />
       <button
         type="submit"
