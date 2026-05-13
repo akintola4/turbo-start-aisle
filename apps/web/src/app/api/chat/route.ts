@@ -4,7 +4,12 @@ import {
   createSanityAgentContextClient,
 } from "@workspace/ai-commerce";
 import { env } from "@workspace/env/server";
-import { convertToModelMessages, stepCountIs, streamText } from "ai";
+import {
+  convertToModelMessages,
+  smoothStream,
+  stepCountIs,
+  streamText,
+} from "ai";
 import { z } from "zod";
 
 export const runtime = "nodejs";
@@ -89,14 +94,14 @@ export async function POST(req: Request) {
     const result = streamText({
       // Routes through Vercel AI Gateway via the "creator/model" string form.
       // Swap providers by changing this string; the gateway handles the rest.
-      model: "anthropic/claude-haiku-4.5",
+      model: "google/gemini-3-flash",
       providerOptions: {
         gateway: {
           // Cross-provider failover: if the primary errors or rate-limits,
           // the gateway retries each fallback in order. Three providers means
           // the chat survives any single-provider outage.
           // https://ai-sdk.dev/providers/ai-sdk-providers/ai-gateway
-          models: ["openai/gpt-5-mini", "google/gemini-3-flash"],
+          models: ["anthropic/claude-haiku-4.5", "openai/gpt-5-mini"],
         },
       },
       system: buildSystemPrompt({ userContext: userContext ?? null }),
@@ -106,6 +111,9 @@ export async function POST(req: Request) {
       // for richer multi-step tool use; gateway rate limits are configurable
       // per key in the Vercel dashboard.
       stopWhen: stepCountIs(5),
+      // Smooth bursty token chunks into a steady word-at-a-time cadence so
+      // the UI doesn't render in visible spurts.
+      experimental_transform: smoothStream({ chunking: "word" }),
       onFinish: async () => {
         await mcpClient.close();
       },
