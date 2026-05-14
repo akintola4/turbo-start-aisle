@@ -130,10 +130,10 @@ export function Product({ id, isInline }: ProductProps) {
     product.variants[0]?.available === true;
 
   return (
-    <div className="flex flex-col gap-2 rounded-md border border-border bg-card p-2">
+    <div className="group flex items-center gap-3 rounded-md border border-border bg-card p-2 transition-colors hover:border-primary/40 hover:bg-accent">
       <Link
         href={`/products/${product.slug}`}
-        className="flex items-center gap-3 transition-colors hover:bg-muted/40"
+        className="flex flex-1 items-center gap-3"
       >
         <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded bg-muted">
           {product.imageUrl ? (
@@ -146,25 +146,23 @@ export function Product({ id, isInline }: ProductProps) {
             />
           ) : null}
         </div>
-        <div className="flex flex-col">
-          <span className="text-sm font-medium text-foreground">
+        <div className="flex min-w-0 flex-1 flex-col">
+          <span className="truncate text-sm font-medium text-foreground">
             {product.title}
           </span>
           <span className="text-xs text-muted-foreground">
             {formatPrice(product.minPrice, product.maxPrice, currencyCode)}
           </span>
+          {!purchasable ? (
+            <span className="shrink-0 text-xs text-primary transition-colors group-hover:text-primary/70">
+              View options →
+            </span>
+          ) : null}
         </div>
       </Link>
       {purchasable && product.variants[0] ? (
         <AddToCartButton variantGid={product.variants[0].gid} />
-      ) : (
-        <Link
-          href={`/products/${product.slug}`}
-          className="text-xs text-primary underline-offset-4 hover:underline"
-        >
-          View options →
-        </Link>
-      )}
+      ) : null}
     </div>
   );
 }
